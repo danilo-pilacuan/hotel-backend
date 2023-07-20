@@ -2,6 +2,8 @@ import { Controller, Get, Post, Put, Delete, Res, HttpStatus, Body, Param, UseIn
 import { HabitacionService } from './habitacion.service';
 import { CreateHabitacionDTO, UpdateHabitacionDTO } from './dto/habitacion.dto';
 import { FileFieldsInterceptor, FileInterceptor } from '@nestjs/platform-express';
+import { diskStorage } from 'multer';
+import { Helper } from 'src/shared/helper';
 
 @Controller('habitaciones')
 export class HabitacionController {
@@ -17,18 +19,27 @@ export class HabitacionController {
   @UseInterceptors(FileFieldsInterceptor([
     { name: 'fotoNormal', maxCount: 1 },
     { name: 'foto360', maxCount: 1 },
-  ]))
-  uploadFiles(@Body() createHabitacionDTO: CreateHabitacionDTO,@UploadedFiles() files: { avatar?: Express.Multer.File[], background?: Express.Multer.File[] }) {
+  ],
+  {
+    storage: diskStorage({
+      destination: Helper.destinationPath,
+      filename: Helper.customFileName,
+    }),
+  },))
+  async uploadFiles(@Res() res,@Body() createHabitacionDTO: CreateHabitacionDTO,@UploadedFiles() files: { fotoNormal?: Express.Multer.File[], foto360?: Express.Multer.File[] }) {
     console.log(files);
     console.log(createHabitacionDTO);
+    const createdHabitacion = await this.habitacionService.createHabitacion(createHabitacionDTO,'images/'+files.fotoNormal[0].filename,'images/'+files.foto360[0].filename);
+    return res.status(HttpStatus.OK).json({ createdHabitacion });
+    //return res.status(HttpStatus.OK).json({ "ok":"ok" });
   }
 
 
 
   @Post()
   async createHabitacion(@Res() res, @Body() createHabitacionDTO: CreateHabitacionDTO) {
-    const createdHabitacion = await this.habitacionService.createHabitacion(createHabitacionDTO);
-    return res.status(HttpStatus.OK).json({ createdHabitacion });
+    // const createdHabitacion = await this.habitacionService.createHabitacion(createHabitacionDTO);
+    // return res.status(HttpStatus.OK).json({ createdHabitacion });
   }
 
   @Get()

@@ -12,9 +12,17 @@ import { FacturaModule } from './factura/factura.module';
 import { TarifaModule } from './tarifa/tarifa.module';
 import { RegistroRestauranteModule } from './registro-restaurante/registro-restaurante.module';
 import { ReservaRegistroRestauranteModule } from './reserva-registro-restaurante/reserva-registro-restaurante.module';
+import { join } from 'path';
+import { ServeStaticModule } from '@nestjs/serve-static';
+
 
 @Module({
-  imports: [TypeOrmModule.forRoot({
+  imports: [
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'images'),
+      serveRoot:"/images"
+    })
+    ,TypeOrmModule.forRoot({
     type: 'mysql',
     host: 'localhost',
     port: 3306,

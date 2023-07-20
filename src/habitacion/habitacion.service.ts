@@ -11,11 +11,13 @@ export class HabitacionService {
     private habitacionRepository: Repository<Habitacion>,
   ) {}
 
-  async createHabitacion(createHabitacionDTO: CreateHabitacionDTO): Promise<Habitacion> {
+  async createHabitacion(createHabitacionDTO: CreateHabitacionDTO,urlFotoNormal:string,urlFoto360:string): Promise<Habitacion> {
     let habitacionNueva = new Habitacion();
     habitacionNueva.numero=createHabitacionDTO.numero
     habitacionNueva.piso=createHabitacionDTO.piso
     habitacionNueva.estado=createHabitacionDTO.estado;
+    habitacionNueva.urlFotoNormal=urlFotoNormal;
+    habitacionNueva.urlFoto360=urlFoto360;
     habitacionNueva.tarifa=<any>{id: createHabitacionDTO.tarifaId};
     return await this.habitacionRepository.save(habitacionNueva);
   }
@@ -31,7 +33,15 @@ export class HabitacionService {
   }
 
   findOne(id: number): Promise<Habitacion> {
-    return this.habitacionRepository.findOneBy({id});
+    return this.habitacionRepository.findOne({
+      where:{
+        id
+      },
+      relations:{
+        tarifa:true,
+        //caracteristicasHabitacion:true
+      }
+    });
   }
 
   async remove(id: number): Promise<DeleteResult> {
