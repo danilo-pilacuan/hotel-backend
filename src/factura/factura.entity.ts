@@ -1,5 +1,5 @@
 import { Reserva } from 'src/reserva/reserva.entity';
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToOne } from 'typeorm';
 
 @Entity()
 export class Factura {
@@ -27,7 +27,7 @@ export class Factura {
   @Column()
   estado: string;
 
-  @OneToMany(() => Reserva, (reserva) => reserva.factura)
-  reservas: Reserva[]
+  @ManyToOne(() => Reserva, (reserva) => reserva.facturas)
+  reserva: Reserva
 
 }

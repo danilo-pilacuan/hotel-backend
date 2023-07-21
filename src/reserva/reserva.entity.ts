@@ -58,7 +58,7 @@ export class Reserva {
   @OneToMany(() => ReservaRegistroRestaurante, (reservaRegistroRestaurante) => reservaRegistroRestaurante.reserva)
   reservasRegistroRestaurante: ReservaRegistroRestaurante[]
 
-  @ManyToOne(() => Factura, (factura) => factura.reservas)
-  factura: Factura
+  @OneToMany(() => Factura, (factura) => factura.reserva)
+  facturas: Factura[]
 
 }
