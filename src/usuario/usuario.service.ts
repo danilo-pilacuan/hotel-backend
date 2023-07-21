@@ -29,6 +29,14 @@ export class UsuarioService {
     return this.usuariosRepository.findOneBy({id});
   }
 
+  findByEmail(correo: string): Promise<Usuario | null> {
+    return this.usuariosRepository.findOne({
+      where:{
+        correo
+      }
+    });
+  }
+
   async remove(id: number): Promise<DeleteResult> {
     const result = await this.usuariosRepository.delete(id);
     return result;

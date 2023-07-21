@@ -38,6 +38,16 @@ export class UsuarioController {
     }
   }
 
+  @Get('byCorreo/:correo')
+  async getUsuarioByCorreo(@Res() res, @Param('correo') correo: string) {
+    const usuario = await this.usuarioService.findByEmail(correo);
+    if (usuario) {
+      return res.status(HttpStatus.OK).json({ resultado: usuario });
+    } else {
+      return res.status(HttpStatus.NOT_FOUND).json({ error: 'Usuario not found' });
+    }
+  }
+
   @Put()
   async updateUsuario(@Res() res, @Body() updateUsuarioDTO: UpdateUsuarioDTO) {
     const updatedUsuario = await this.usuarioService.updateUsuario(updateUsuarioDTO);
