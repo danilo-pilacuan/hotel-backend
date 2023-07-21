@@ -30,7 +30,7 @@ import { ServeStaticModule } from '@nestjs/serve-static';
     password: '',
     database: 'dbHotel',
     autoLoadEntities: true,
-    synchronize: true,
+    synchronize: false,
   }),UsuarioModule, ClienteModule, HabitacionModule, ServicioModule, CaracteristicaHabitacionModule, ReservaModule, FacturaModule, TarifaModule, RegistroRestauranteModule, ReservaRegistroRestauranteModule],
   controllers: [AppController],
   providers: [AppService],

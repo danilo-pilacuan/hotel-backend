@@ -23,10 +23,14 @@ export class CreateReservaDTO {
   numeroPersonas: number;
 
   @ApiProperty()
-  detalles: number;
+  detalles: string;
 
   @ApiProperty()
   total: number;
+
+  @ApiProperty()
+  habitacionId: number;
+
 }
 
 export class UpdateReservaDTO {
@@ -55,8 +59,11 @@ export class UpdateReservaDTO {
   numeroPersonas: number;
 
   @ApiProperty()
-  detalles: number;
+  detalles: string;
 
   @ApiProperty()
   total: number;
+  
+  @ApiProperty()
+  habitacionId: number;
 }

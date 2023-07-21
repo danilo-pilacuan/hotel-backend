@@ -12,6 +12,19 @@ export class ReservaService {
   ) {}
 
   async createReserva(createReservaDTO: CreateReservaDTO): Promise<Reserva> {
+    let reserva = new Reserva();
+    reserva.fechaCreacion=createReservaDTO.fechaCreacion;
+    reserva.fechaLlegada=createReservaDTO.fechaLlegada;
+    reserva.fechaSalida=createReservaDTO.fechaSalida;
+    reserva.horaLlegada=createReservaDTO.horaLlegada;
+    reserva.horaSalida=createReservaDTO.horaSalida;
+    reserva.estado=createReservaDTO.estado;
+    reserva.numeroPersonas=createReservaDTO.numeroPersonas;
+    reserva.detalles=createReservaDTO.detalles;
+    reserva.total=createReservaDTO.total;
+    reserva.fechaCreacion=createReservaDTO.fechaCreacion;
+    reserva.habitacion=<any>{id: createReservaDTO.habitacionId};
+
     return await this.reservaRepository.save(createReservaDTO);
   }
 

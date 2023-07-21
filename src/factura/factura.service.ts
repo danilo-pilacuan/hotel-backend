@@ -12,7 +12,18 @@ export class FacturaService {
   ) {}
 
   async create(createFacturaDto: CreateFacturaDto): Promise<Factura> {
-    const factura = this.facturaRepository.create(createFacturaDto);
+    let factura = new Factura();
+    factura.numero=createFacturaDto.numero;
+    factura.fecha=createFacturaDto.fecha;
+    factura.ruc=createFacturaDto.ruc;
+    factura.razonSocial=createFacturaDto.razonSocial;
+    factura.direccion=createFacturaDto.direccion;
+    factura.telefono=createFacturaDto.telefono;
+    factura.estado=createFacturaDto.estado;
+    factura.reserva=<any>{id: createFacturaDto.reservaId};
+    //factura.reserva=createFacturaDto.numero;
+
+    //const factura = this.facturaRepository.create(createFacturaDto);
     return this.facturaRepository.save(factura);
   }
 
