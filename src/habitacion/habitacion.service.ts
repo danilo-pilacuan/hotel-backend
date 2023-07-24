@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, DeleteResult } from 'typeorm';
+import { Repository, DeleteResult, MoreThan, LessThan } from 'typeorm';
 import { Habitacion } from './habitacion.entity';
 import { CreateHabitacionDTO, UpdateHabitacionDTO } from './dto/habitacion.dto';
 
@@ -28,6 +28,30 @@ export class HabitacionService {
 
   findAll(): Promise<Habitacion[]> {
     return this.habitacionRepository.find({relations:{
+      tarifa:true
+    }});
+  }
+
+  findHab(): Promise<Habitacion[]> {
+    return this.habitacionRepository.find({
+      where:{
+        tarifa:{
+          id:LessThan(12)
+        }
+      },
+      relations:{
+      tarifa:true
+    }});
+  }
+
+  findServ(): Promise<Habitacion[]> {
+    return this.habitacionRepository.find({
+      where:{
+        tarifa:{
+          id:MoreThan(11)
+        }
+      },
+      relations:{
       tarifa:true
     }});
   }

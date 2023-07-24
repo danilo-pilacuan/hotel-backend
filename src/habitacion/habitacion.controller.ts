@@ -48,6 +48,18 @@ export class HabitacionController {
     return res.status(HttpStatus.OK).json({ resultado: habitaciones });
   }
 
+  @Get("/byhabitaciones")
+  async getHabitaciones1(@Res() res) {
+    const habitaciones = await this.habitacionService.findHab();
+    return res.status(HttpStatus.OK).json({ resultado: habitaciones });
+  }
+
+  @Get("byservicios")
+  async getHabitaciones2(@Res() res) {
+    const habitaciones = await this.habitacionService.findServ();
+    return res.status(HttpStatus.OK).json({ resultado: habitaciones });
+  }
+
   @Get(':id')
   async getHabitacionById(@Res() res, @Param('id') habitacionId: number) {
     const habitacion = await this.habitacionService.findOne(habitacionId);
