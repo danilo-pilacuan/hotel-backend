@@ -57,6 +57,7 @@ export class ReservaService {
     reserva.total=createReservaDTO.total;
     reserva.fechaCreacion=createReservaDTO.fechaCreacion;
     reserva.habitacion=<any>{id: createReservaDTO.habitacionId};
+    reserva.fotoComprobante=urlFotoComprobante;
 
     return await this.reservaRepository.save(createReservaDTO);
 

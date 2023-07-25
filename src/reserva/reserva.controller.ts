@@ -28,7 +28,7 @@ export class ReservaController {
   async uploadFiles(@Res() res,@Body() createReservaDTO: CreateReservaDTO,@UploadedFiles() files: { fotoComprobante?: Express.Multer.File[] }) {
     console.log(files);
     console.log(createReservaDTO);
-    const createdReserva = await this.reservaService.createReservaImg(createReservaDTO,'images/'+files.fotoComprobante[0].filename);
+    const createdReserva = await this.reservaService.createReservaImg(createReservaDTO,'images/reservas/'+files.fotoComprobante[0].filename);
     return res.status(HttpStatus.OK).json({ createdReserva });
     //return res.status(HttpStatus.OK).json({ "ok":"ok" });
   }
