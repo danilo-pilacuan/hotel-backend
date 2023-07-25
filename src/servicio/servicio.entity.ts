@@ -18,6 +18,12 @@ export class Servicio {
   @Column()
   precio: number;
 
+  @Column()
+  urlFotoNormal: string;
+  
+  @Column()
+  urlFoto360: string;
+
   @ManyToMany(() => Reserva, (reserva) => reserva.servicios)
     reservas: Reserva[]
 

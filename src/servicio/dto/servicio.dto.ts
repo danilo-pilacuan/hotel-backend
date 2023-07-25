@@ -12,6 +12,12 @@ export class CreateServicioDTO {
 
   @ApiProperty()
   precio: number;
+
+  @ApiProperty()
+  urlFotoNormal: string;
+  
+  @ApiProperty()
+  urlFoto360: string;
 }
 
 export class UpdateServicioDTO {
@@ -29,4 +35,10 @@ export class UpdateServicioDTO {
 
   @ApiProperty()
   precio: number;
+  
+  @ApiProperty()
+  urlFotoNormal: string;
+  
+  @ApiProperty()
+  urlFoto360: string;
 }

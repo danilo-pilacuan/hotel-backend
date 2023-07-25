@@ -36,3 +36,13 @@ export class UpdateUsuarioDTO {
   @ApiProperty()
   tipo: number;
 }
+
+
+export class LoginUsuarioDTO {
+
+  @ApiProperty()
+  correo: string;
+
+  @ApiProperty()
+  clave: string;
+}

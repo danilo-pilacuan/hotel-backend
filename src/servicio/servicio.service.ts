@@ -11,6 +11,23 @@ export class ServicioService {
     private servicioRepository: Repository<Servicio>,
   ) {}
 
+  async createServicioImg(createHabitacionDTO: CreateServicioDTO,urlFotoNormal:string,urlFoto360:string): Promise<Servicio> {
+    let servicioNuevo = new Servicio();
+    servicioNuevo.descripcion=createHabitacionDTO.descripcion;
+    servicioNuevo.nombre=createHabitacionDTO.nombre;
+    servicioNuevo.tipo=createHabitacionDTO.tipo;
+    servicioNuevo.precio=createHabitacionDTO.precio;
+    servicioNuevo.urlFotoNormal=urlFotoNormal;
+    servicioNuevo.urlFoto360=urlFoto360;
+    // habitacionNueva.numero=createHabitacionDTO.numero
+    // habitacionNueva.piso=createHabitacionDTO.piso
+    // habitacionNueva.estado=createHabitacionDTO.estado;
+    // habitacionNueva.urlFotoNormal=urlFotoNormal;
+    // habitacionNueva.urlFoto360=urlFoto360;
+    // habitacionNueva.tarifa=<any>{id: createHabitacionDTO.tarifaId};
+    return await this.servicioRepository.save(servicioNuevo);
+  }
+
   async createServicio(createServicioDTO: CreateServicioDTO): Promise<Servicio> {
     return await this.servicioRepository.save(createServicioDTO);
   }

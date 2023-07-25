@@ -10,7 +10,7 @@ import {
   Param 
 } from '@nestjs/common';
 import { UsuarioService } from './usuario.service';
-import { CreateUsuarioDTO, UpdateUsuarioDTO } from './dto/usuario.dto';
+import { CreateUsuarioDTO, LoginUsuarioDTO, UpdateUsuarioDTO } from './dto/usuario.dto';
 
 @Controller('usuarios')
 export class UsuarioController {
@@ -20,6 +20,30 @@ export class UsuarioController {
   async createUsuario(@Res() res, @Body() createUsuarioDTO: CreateUsuarioDTO) {
     const createdUsuario = await this.usuarioService.createUsuario(createUsuarioDTO);
     return res.status(HttpStatus.OK).json({ createdUsuario });
+  }
+
+  @Post('/login')
+  async loginUsuario(@Res() res, @Body() loginUsuarioDTO: LoginUsuarioDTO) {
+    const loggedUsuario = await this.usuarioService.loginUsuario(loginUsuarioDTO);
+    if(loggedUsuario)
+    {
+      if(loggedUsuario.clave==loginUsuarioDTO.clave)
+      {
+        return res.status(HttpStatus.OK).json({ usuario: loggedUsuario });
+      }
+      else
+      {
+        return res.status(HttpStatus.NOT_FOUND).json({ usuario: null });
+      }
+    }
+    else
+    {
+      return res.status(HttpStatus.OK).json({ usuario: null });
+    }
+    
+    
+    //const createdUsuario = await this.usuarioService.createUsuario(loginUsuarioDTO);
+    //return res.status(HttpStatus.OK).json({ createdUsuario });
   }
 
   @Get()
