@@ -31,6 +31,9 @@ export class CreateReservaDTO {
   @ApiProperty()
   habitacionId: number;
 
+  @ApiProperty()
+  fotoComprobante: string;
+
 }
 
 export class UpdateReservaDTO {
@@ -66,4 +69,7 @@ export class UpdateReservaDTO {
   
   @ApiProperty()
   habitacionId: number;
+
+  @ApiProperty()
+  fotoComprobante: string;
 }

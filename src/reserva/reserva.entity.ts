@@ -34,6 +34,9 @@ export class Reserva {
   @Column()
   detalles:string;
 
+  @Column()
+  fotoComprobante: string;
+
   @Column({type: "decimal", precision: 10, scale: 2, default: 0})
   total:number;
 

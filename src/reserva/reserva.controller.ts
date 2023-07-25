@@ -1,6 +1,9 @@
-import { Controller, Get, Post, Put, Delete, Res, HttpStatus, Body, Param } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Res, HttpStatus, Body, Param, UseInterceptors, UploadedFiles } from '@nestjs/common';
 import { ReservaService } from './reserva.service';
 import { CreateReservaDTO, UpdateReservaDTO } from './dto/reserva.dto';
+import { FileFieldsInterceptor } from '@nestjs/platform-express';
+import { diskStorage } from 'multer';
+import { Helper } from 'src/shared/helperReserva';
 
 @Controller('reserva')
 export class ReservaController {
@@ -10,6 +13,24 @@ export class ReservaController {
   async createReserva(@Res() res, @Body() createReservaDTO: CreateReservaDTO) {
     const createdReserva = await this.reservaService.createReserva(createReservaDTO);
     return res.status(HttpStatus.OK).json({ createdReserva });
+  }
+
+  @Post('uploadReserva')
+  @UseInterceptors(FileFieldsInterceptor([
+    { name: 'fotoComprobante', maxCount: 1 },
+  ],
+  {
+    storage: diskStorage({
+      destination: Helper.destinationPath,
+      filename: Helper.customFileName,
+    }),
+  },))
+  async uploadFiles(@Res() res,@Body() createReservaDTO: CreateReservaDTO,@UploadedFiles() files: { fotoComprobante?: Express.Multer.File[] }) {
+    console.log(files);
+    console.log(createReservaDTO);
+    const createdReserva = await this.reservaService.createReservaImg(createReservaDTO,'images/'+files.fotoComprobante[0].filename);
+    return res.status(HttpStatus.OK).json({ createdReserva });
+    //return res.status(HttpStatus.OK).json({ "ok":"ok" });
   }
 
   @Get()
