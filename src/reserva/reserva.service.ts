@@ -44,6 +44,10 @@ export class ReservaService {
     // // habitacionNueva.tarifa=<any>{id: createHabitacionDTO.tarifaId};
     // return await this.servicioRepository.save(servicioNuevo);
 
+    console.log("-----------------------------------------------------------------")
+    console.log("urlFotoComprobante")
+    console.log(urlFotoComprobante)
+    console.log("-----------------------------------------------------------------")
 
     let reserva = new Reserva();
     reserva.fechaCreacion=createReservaDTO.fechaCreacion;
@@ -59,7 +63,7 @@ export class ReservaService {
     reserva.habitacion=<any>{id: createReservaDTO.habitacionId};
     reserva.fotoComprobante=urlFotoComprobante;
 
-    return await this.reservaRepository.save(createReservaDTO);
+    return await this.reservaRepository.save(reserva);
 
   }
 
