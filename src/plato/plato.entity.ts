@@ -1,9 +1,9 @@
-import { ReservaRegistroRestaurante } from 'src/reserva-registro-restaurante/reserva-registro-restaurante.entity';
+import { ReservaPlato } from 'src/reserva-plato/reserva-plato.entity';
 import { Reserva } from 'src/reserva/reserva.entity';
 import { Entity, Column, PrimaryGeneratedColumn, ManyToMany, OneToMany } from 'typeorm';
 
 @Entity()
-export class RegistroRestaurante {
+export class Plato {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -22,7 +22,7 @@ export class RegistroRestaurante {
   // @ManyToMany(() => Reserva, (reserva) => reserva.registrosRestaurante)
   // reservas: Reserva[]
 
-  @OneToMany(() => ReservaRegistroRestaurante, (reservaRegistroRestaurante) => reservaRegistroRestaurante.reserva)
-  reservasRegistroRestaurante: ReservaRegistroRestaurante[]
+  @OneToMany(() => ReservaPlato, (reservaPlato) => reservaPlato.reserva)
+  reservasPlato: ReservaPlato[]
 
 }

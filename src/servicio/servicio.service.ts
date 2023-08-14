@@ -28,6 +28,22 @@ export class ServicioService {
     return await this.servicioRepository.save(servicioNuevo);
   }
 
+  async updateServicioImg(updateServicioDTO: UpdateServicioDTO,urlFotoNormal:string,urlFoto360:string): Promise<Servicio> {
+    let servicioActualizado = await this.servicioRepository.findOne({
+      where:{
+        id:updateServicioDTO.id
+      }
+    })
+    servicioActualizado.descripcion=updateServicioDTO.descripcion;
+    servicioActualizado.nombre=updateServicioDTO.nombre;
+    servicioActualizado.tipo=updateServicioDTO.tipo;
+    servicioActualizado.precio=updateServicioDTO.precio;
+    if(urlFotoNormal!='') servicioActualizado.urlFotoNormal=urlFotoNormal;
+    if(urlFoto360!='') servicioActualizado.urlFoto360=urlFoto360;
+    
+    return await this.servicioRepository.save(servicioActualizado);
+  }
+
   async createServicio(createServicioDTO: CreateServicioDTO): Promise<Servicio> {
     return await this.servicioRepository.save(createServicioDTO);
   }

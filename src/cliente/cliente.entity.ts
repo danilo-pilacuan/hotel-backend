@@ -1,11 +1,11 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Reserva } from 'src/reserva/reserva.entity';
+import { Usuario } from 'src/usuario/usuario.entity';
+import { Entity, Column, PrimaryColumn, OneToMany, OneToOne, JoinColumn } from 'typeorm';
 
 @Entity()
 export class Cliente {
-  @PrimaryGeneratedColumn()
-  id: number;
-
-  @Column()
+  
+  @PrimaryColumn()
   cedula: string;
   
   @Column()
@@ -15,14 +15,15 @@ export class Cliente {
   apellidos: string;
 
   @Column()
-  correo: string;
+  direccion: string;
 
   @Column()
-  clave: string;
+  telefono: string;
 
-  @Column({ default: true })
-  activo: boolean;
+  @OneToOne(() => Usuario)
+    @JoinColumn()
+    usuario: Usuario
 
-  @Column()
-  tipo: number;
+  @OneToMany(() => Reserva, (reserva) => reserva.cliente)
+  reservas: Reserva[]
 }

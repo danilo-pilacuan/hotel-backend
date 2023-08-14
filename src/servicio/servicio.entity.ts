@@ -13,7 +13,7 @@ export class Servicio {
   descripcion: string;
 
   @Column()
-  tipo: string;
+  tipo: number;
   
   @Column()
   precio: number;

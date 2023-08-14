@@ -4,7 +4,9 @@ import { CreateReservaDTO, UpdateReservaDTO } from './dto/reserva.dto';
 import { FileFieldsInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { Helper } from 'src/shared/helperReserva';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('reserva')
 @Controller('reserva')
 export class ReservaController {
   constructor(private readonly reservaService: ReservaService) {}

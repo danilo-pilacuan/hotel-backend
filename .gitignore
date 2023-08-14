@@ -1,7 +1,9 @@
 # compiled output
 /dist
 /node_modules
-
+/images/platos/*
+/images/reservas/*
+/images/servicios/*
 # Logs
 logs
 *.log

@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 
-export class CreateRegistroRestauranteDTO {
+export class CreatePlatoDTO {
   @ApiProperty()
   nombre: string;
 
@@ -14,7 +14,7 @@ export class CreateRegistroRestauranteDTO {
   urlFoto: string;
 }
 
-export class UpdateRegistroRestauranteDTO {
+export class UpdatePlatoDTO {
   @ApiProperty()
   id: number;
 

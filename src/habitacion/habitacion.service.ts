@@ -21,6 +21,35 @@ export class HabitacionService {
     habitacionNueva.tarifa=<any>{id: createHabitacionDTO.tarifaId};
     return await this.habitacionRepository.save(habitacionNueva);
   }
+  async updateHabitacionImgs(updateHabitacion: UpdateHabitacionDTO,urlFotoNormal:string,urlFoto360:string): Promise<Habitacion> {
+    console.log("***********************************************")
+    console.log(updateHabitacion)
+    console.log("***********************************************")
+    
+    let habitacionActualizada = await this.habitacionRepository.findOne({
+      where:{
+        id: updateHabitacion.id
+      }
+    })
+    //habitacionActualizada.id=updateHabitacion.id
+    habitacionActualizada.numero=updateHabitacion.numero
+    habitacionActualizada.piso=updateHabitacion.piso
+    habitacionActualizada.estado=updateHabitacion.estado;
+    if(urlFoto360!='')
+    {
+      habitacionActualizada.urlFoto360=urlFoto360;
+    }
+    if(urlFotoNormal!='')
+    {habitacionActualizada.urlFotoNormal=urlFotoNormal;}
+    habitacionActualizada.tarifa=<any>{id: updateHabitacion.tarifaId};
+    console.log("----------------------------------------------")
+    console.log(habitacionActualizada)
+    console.log("----------------------------------------------")
+    return await this.habitacionRepository.save(habitacionActualizada);
+
+  }
+
+  
 
   async updateHabitacion(updateHabitacionDTO: UpdateHabitacionDTO): Promise<Habitacion> {
     return await this.habitacionRepository.save(updateHabitacionDTO);

@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Cliente } from 'src/cliente/cliente.entity';
+import { Entity, Column, PrimaryGeneratedColumn, OneToOne } from 'typeorm';
 
 @Entity()
 export class Usuario {
@@ -14,9 +15,15 @@ export class Usuario {
   @Column()
   clave: string;
 
-  @Column({ default: true })
+  @Column({ type: "boolean", default: true })
   activo: boolean;
 
   @Column()
   tipo: number;
+
+  @OneToOne(() => Cliente)
+    cliente: Cliente
+
+  // @OneToMany(() => Reserva, (reserva) => reserva.usuario)
+  // reservas: Reserva[]
 }

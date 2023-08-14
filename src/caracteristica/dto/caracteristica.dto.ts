@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 
-export class CreateCaracteristicaHabitacionDTO {
+export class CreateCaracteristicaDTO {
   @ApiProperty()
   nombre: string;
 
@@ -11,7 +11,7 @@ export class CreateCaracteristicaHabitacionDTO {
   tipo: string;
 }
 
-export class UpdateCaracteristicaHabitacionDTO {
+export class UpdateCaracteristicaDTO {
   @ApiProperty()
   id: number;
 

@@ -12,6 +12,6 @@ export class Helper {
     }
    
     static destinationPath(req, file, cb) {
-      cb(null, './images/habitaciones/')
+      cb(null, './images/platos/')
     }
   }

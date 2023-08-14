@@ -2,7 +2,9 @@ import { Controller, Get, Post, Body, Put, Param, Delete, Res, HttpStatus } from
 import { TarifaService } from './tarifa.service';
 import { CreateTarifaDTO, UpdateTarifaDTO } from './dto/tarifa.dto';
 import { Tarifa } from './tarifa.entity';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('tarifas')
 @Controller('tarifas')
 export class TarifaController {
   constructor(private readonly tarifaService: TarifaService) {}

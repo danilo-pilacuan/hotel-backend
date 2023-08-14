@@ -10,17 +10,14 @@ export class CreateReservaDTO {
   @ApiProperty()
   fechaSalida: string;
 
-  @ApiProperty()
-  horaLlegada: string;
+  // @ApiProperty()
+  // horaLlegada: string;
 
-  @ApiProperty()
-  horaSalida: string;
+  // @ApiProperty()
+  // horaSalida: string;
 
   @ApiProperty()
   estado: number;
-
-  @ApiProperty()
-  numeroPersonas: number;
 
   @ApiProperty()
   detalles: string;
@@ -32,7 +29,7 @@ export class CreateReservaDTO {
   habitacionId: number;
 
   @ApiProperty()
-  fotoComprobante: string;
+  urlFotoComprobante: string;
 
 }
 
@@ -49,17 +46,14 @@ export class UpdateReservaDTO {
   @ApiProperty()
   fechaSalida: string;
 
-  @ApiProperty()
-  horaLlegada: string;
+  // @ApiProperty()
+  // horaLlegada: string;
 
-  @ApiProperty()
-  horaSalida: string;
+  // @ApiProperty()
+  // horaSalida: string;
 
   @ApiProperty()
   estado: number;
-
-  @ApiProperty()
-  numeroPersonas: number;
 
   @ApiProperty()
   detalles: string;
@@ -71,5 +65,5 @@ export class UpdateReservaDTO {
   habitacionId: number;
 
   @ApiProperty()
-  fotoComprobante: string;
+  urlFotoComprobante: string;
 }

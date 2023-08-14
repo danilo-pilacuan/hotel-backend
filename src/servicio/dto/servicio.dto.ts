@@ -8,7 +8,7 @@ export class CreateServicioDTO {
   descripcion: string;
 
   @ApiProperty()
-  tipo: string;
+  tipo: number;
 
   @ApiProperty()
   precio: number;
@@ -31,7 +31,7 @@ export class UpdateServicioDTO {
   descripcion: string;
 
   @ApiProperty()
-  tipo: string;
+  tipo: number;
 
   @ApiProperty()
   precio: number;

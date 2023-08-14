@@ -35,7 +35,11 @@ export class UsuarioService {
   }
 
   findAll(): Promise<Usuario[]> {
-    return this.usuariosRepository.find();
+    return this.usuariosRepository.find({
+      relations:{
+        //reservas:true
+      }
+    });
   }
 
   findOne(id: number): Promise<Usuario | null> {

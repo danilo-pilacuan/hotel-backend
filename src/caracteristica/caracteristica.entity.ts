@@ -2,7 +2,7 @@ import { Habitacion } from 'src/habitacion/habitacion.entity';
 import { Entity, Column, PrimaryGeneratedColumn, ManyToMany } from 'typeorm';
 
 @Entity()
-export class CaracteristicaHabitacion {
+export class Caracteristica {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -16,7 +16,7 @@ export class CaracteristicaHabitacion {
   tipo: string;
 
 
-  @ManyToMany(() => Habitacion, (habitacion) => habitacion.caracteristicasHabitacion)
+  @ManyToMany(() => Habitacion, (habitacion) => habitacion.caracteristicas)
   habitaciones: Habitacion[]
 
 }

@@ -1,7 +1,8 @@
+import { Cliente } from 'src/cliente/cliente.entity';
 import { Factura } from 'src/factura/factura.entity';
 import { Habitacion } from 'src/habitacion/habitacion.entity';
-import { RegistroRestaurante } from 'src/registro-restaurante/registro-restaurante.entity';
-import { ReservaRegistroRestaurante } from 'src/reserva-registro-restaurante/reserva-registro-restaurante.entity';
+import { Plato } from 'src/plato/plato.entity';
+import { ReservaPlato } from 'src/reserva-plato/reserva-plato.entity';
 import { Servicio } from 'src/servicio/servicio.entity';
 import { Entity, Column, PrimaryGeneratedColumn, ManyToMany, JoinTable, ManyToOne, OneToMany, OneToOne } from 'typeorm';
 
@@ -10,32 +11,30 @@ export class Reserva {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: 'date' })
+  @Column({ type: "datetime" })
   fechaCreacion: string;
 
-  @Column({ type: 'date' })
+  @Column({ type: "datetime" })
   fechaLlegada: string;
 
-  @Column({ type: 'date' })
+  @Column({ type: "datetime" })
   fechaSalida: string;
 
-  @Column()
-  horaLlegada: string;
+  // @Column({ type: 'time' })
+  // horaLlegada: string;
 
-  @Column()
-  horaSalida: string;
+  // @Column({ type: 'time' })
+  // horaSalida: string;
 
   @Column()
   estado:number;
 
-  @Column()
-  numeroPersonas:number;
   
   @Column()
   detalles:string;
 
   @Column()
-  fotoComprobante: string;
+  urlFotoComprobante: string;
 
   @Column({type: "decimal", precision: 10, scale: 2, default: 0})
   total:number;
@@ -46,11 +45,11 @@ export class Reserva {
       })
     servicios: Servicio[]
 
-    // @ManyToMany(() => RegistroRestaurante, (registroRestaurante) => registroRestaurante.reservas)
+    // @ManyToMany(() => Plato, (plato) => plato.reservas)
     // @JoinTable({
-    //   name: "reserva-registro-restaurante",
+    //   name: "reserva-plato",
     // })
-    // registrosRestaurante: RegistroRestaurante[];
+    // registrosRestaurante: Plato[];
     // @Column()
     // cantidad:number;
 
@@ -58,10 +57,13 @@ export class Reserva {
   habitacion: Habitacion
   
 
-  @OneToMany(() => ReservaRegistroRestaurante, (reservaRegistroRestaurante) => reservaRegistroRestaurante.reserva)
-  reservasRegistroRestaurante: ReservaRegistroRestaurante[]
+  @OneToMany(() => ReservaPlato, (reservaPlato) => reservaPlato.reserva)
+  reservasPlato: ReservaPlato[]
 
   @OneToMany(() => Factura, (factura) => factura.reserva)
   facturas: Factura[]
+
+  @ManyToOne(() => Cliente, (cliente) => cliente.reservas)
+  cliente: Cliente
 
 }

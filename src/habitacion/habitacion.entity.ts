@@ -1,4 +1,4 @@
-import { CaracteristicaHabitacion } from 'src/caracteristica-habitacion/caracteristica-habitacion.entity';
+import { Caracteristica } from 'src/caracteristica/caracteristica.entity';
 import { Reserva } from 'src/reserva/reserva.entity';
 import { Tarifa } from 'src/tarifa/tarifa.entity';
 import { Entity, Column, PrimaryGeneratedColumn, ManyToMany, JoinTable, ManyToOne, OneToMany } from 'typeorm';
@@ -23,11 +23,11 @@ export class Habitacion {
   @Column()
   estado: number;
 
-  @ManyToMany(() => CaracteristicaHabitacion, (caracteristicaHabitacion) => caracteristicaHabitacion.habitaciones)
+  @ManyToMany(() => Caracteristica, (caracteristica) => caracteristica.habitaciones)
     @JoinTable({
-      name: "habitacion_caracteristicas_habitacion",
+      name: "habitacion_caracteristicas",
     })
-    caracteristicasHabitacion: CaracteristicaHabitacion[]
+    caracteristicas: Caracteristica[]
 
     
 
