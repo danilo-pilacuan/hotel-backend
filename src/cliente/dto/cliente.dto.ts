@@ -12,10 +12,10 @@ export class CreateClienteDTO {
     apellidos: string;
 
     @ApiProperty()
-    correo: string;
-
-    @ApiProperty()
     direccion: string;
+    
+    @ApiProperty()
+    correo: string;
 
     @ApiProperty()
     telefono: string;
@@ -23,9 +23,6 @@ export class CreateClienteDTO {
 }
 
 export class UpdateClienteDTO {
-    @ApiProperty()
-    id: number;
-
     @ApiProperty()
     cedula: string;
 
@@ -36,10 +33,10 @@ export class UpdateClienteDTO {
     apellidos: string;
 
     @ApiProperty()
-    correo: string;
+    direccion: string;
 
     @ApiProperty()
-    direccion: string;
+    correo: string;
 
     @ApiProperty()
     telefono: string;

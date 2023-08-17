@@ -11,11 +11,11 @@ import { ApiTags } from '@nestjs/swagger';
 export class ReservaController {
   constructor(private readonly reservaService: ReservaService) {}
 
-  @Post()
-  async createReserva(@Res() res, @Body() createReservaDTO: CreateReservaDTO) {
-    const createdReserva = await this.reservaService.createReserva(createReservaDTO);
-    return res.status(HttpStatus.OK).json({ createdReserva });
-  }
+  // @Post()
+  // async createReserva(@Res() res, @Body() createReservaDTO: CreateReservaDTO) {
+  //   const createdReserva = await this.reservaService.createReserva(createReservaDTO);
+  //   return res.status(HttpStatus.OK).json({ createdReserva });
+  // }
 
   @Post('uploadReserva')
   @UseInterceptors(FileFieldsInterceptor([
@@ -29,10 +29,41 @@ export class ReservaController {
   },))
   async uploadFiles(@Res() res,@Body() createReservaDTO: CreateReservaDTO,@UploadedFiles() files: { fotoComprobanteFile?: Express.Multer.File[] }) {
     console.log(files);
+    console.log("77777777777777")
     console.log(createReservaDTO);
     const createdReserva = await this.reservaService.createReservaImg(createReservaDTO,'images/reservas/'+files.fotoComprobanteFile[0].filename);
     return res.status(HttpStatus.OK).json({ createdReserva });
     //return res.status(HttpStatus.OK).json({ "ok":"ok" });
+  }
+
+  @Put('uploadReserva')
+  @UseInterceptors(FileFieldsInterceptor([
+    { name: 'fotoComprobanteFile', maxCount: 1 },
+  ],
+  {
+    storage: diskStorage({
+      destination: Helper.destinationPath,
+      filename: Helper.customFileName,
+    }),
+  },))
+  async updateFiles(@Res() res,@Body() updateReservaDTO: UpdateReservaDTO,@UploadedFiles() files?: { fotoComprobanteFile?: Express.Multer.File[] }) {
+    console.log(files);
+    console.log("77777777777777")
+    console.log(updateReservaDTO);
+    let updatedReserva;
+    if(files)
+    {
+      if(files.fotoComprobanteFile)
+      {
+        updatedReserva = await this.reservaService.updateReservaImg(updateReservaDTO,'images/reservas/'+files.fotoComprobanteFile[0].filename);
+      }
+      else
+      {
+        updatedReserva = await this.reservaService.updateReservaImg(updateReservaDTO,'');
+      }
+    }
+    
+    return res.status(HttpStatus.OK).json({ updatedReserva });
   }
 
   @Get()

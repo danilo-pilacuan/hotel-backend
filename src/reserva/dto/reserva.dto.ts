@@ -2,13 +2,13 @@ import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateReservaDTO {
   @ApiProperty()
-  fechaCreacion: string;
+  fechaCreacion: Date;
 
   @ApiProperty()
-  fechaLlegada: string;
+  fechaLlegada: Date;
 
   @ApiProperty()
-  fechaSalida: string;
+  fechaSalida: Date;
 
   // @ApiProperty()
   // horaLlegada: string;
@@ -22,11 +22,14 @@ export class CreateReservaDTO {
   @ApiProperty()
   detalles: string;
 
-  @ApiProperty()
-  total: number;
+  // @ApiProperty()
+  // total: number;
 
   @ApiProperty()
   habitacionId: number;
+  
+  @ApiProperty()
+  clienteCedula: string;
 
   @ApiProperty()
   urlFotoComprobante: string;
@@ -38,13 +41,13 @@ export class UpdateReservaDTO {
   id: number;
 
   @ApiProperty()
-  fechaCreacion: string;
+  fechaCreacion: Date;
 
   @ApiProperty()
-  fechaLlegada: string;
+  fechaLlegada: Date;
 
   @ApiProperty()
-  fechaSalida: string;
+  fechaSalida: Date;
 
   // @ApiProperty()
   // horaLlegada: string;
@@ -58,11 +61,14 @@ export class UpdateReservaDTO {
   @ApiProperty()
   detalles: string;
 
-  @ApiProperty()
-  total: number;
+  // @ApiProperty()
+  // total: number;
   
   @ApiProperty()
   habitacionId: number;
+
+  @ApiProperty()
+  clienteCedula: string;
 
   @ApiProperty()
   urlFotoComprobante: string;

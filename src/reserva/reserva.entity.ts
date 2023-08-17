@@ -3,6 +3,7 @@ import { Factura } from 'src/factura/factura.entity';
 import { Habitacion } from 'src/habitacion/habitacion.entity';
 import { Plato } from 'src/plato/plato.entity';
 import { ReservaPlato } from 'src/reserva-plato/reserva-plato.entity';
+import { ReservaServicio } from 'src/reserva-servicio/reserva-servicio.entity';
 import { Servicio } from 'src/servicio/servicio.entity';
 import { Entity, Column, PrimaryGeneratedColumn, ManyToMany, JoinTable, ManyToOne, OneToMany, OneToOne } from 'typeorm';
 
@@ -12,13 +13,13 @@ export class Reserva {
   id: number;
 
   @Column({ type: "datetime" })
-  fechaCreacion: string;
+  fechaCreacion: Date;
 
   @Column({ type: "datetime" })
-  fechaLlegada: string;
+  fechaLlegada: Date;
 
   @Column({ type: "datetime" })
-  fechaSalida: string;
+  fechaSalida: Date;
 
   // @Column({ type: 'time' })
   // horaLlegada: string;
@@ -36,15 +37,10 @@ export class Reserva {
   @Column()
   urlFotoComprobante: string;
 
-  @Column({type: "decimal", precision: 10, scale: 2, default: 0})
-  total:number;
+  // @Column({type: "decimal", precision: 10, scale: 2, default: 0})
+  // total:number;
 
-  @ManyToMany(() => Servicio, (servicio) => servicio.reservas)
-    @JoinTable({
-         name: "reservas_servicios",
-      })
-    servicios: Servicio[]
-
+  
     // @ManyToMany(() => Plato, (plato) => plato.reservas)
     // @JoinTable({
     //   name: "reserva-plato",
@@ -65,5 +61,8 @@ export class Reserva {
 
   @ManyToOne(() => Cliente, (cliente) => cliente.reservas)
   cliente: Cliente
+
+  @OneToMany(() => ReservaServicio, (reservaServicio) => reservaServicio.reserva)
+  reservasServicio: ReservaServicio[]
 
 }

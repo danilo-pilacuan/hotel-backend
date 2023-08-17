@@ -30,12 +30,12 @@ export class ClienteService {
     });
   }
 
-//   findOne(id: number): Promise<Cliente | null> {
-//     return this.clienteRepository.findOneBy({id});
-//   }
+  findOne(cedula: string): Promise<Cliente | null> {
+    return this.clienteRepository.findOneBy({cedula});
+  }
 
-  async remove(id: number): Promise<DeleteResult> {
-    const result = await this.clienteRepository.delete(id);
+  async remove(clienteCedula: string): Promise<DeleteResult> {
+    const result = await this.clienteRepository.delete(clienteCedula);
     return result;
   }
 }

@@ -1,5 +1,6 @@
+import { ReservaServicio } from 'src/reserva-servicio/reserva-servicio.entity';
 import { Reserva } from 'src/reserva/reserva.entity';
-import { Entity, Column, PrimaryGeneratedColumn, ManyToMany } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToMany, OneToMany } from 'typeorm';
 
 @Entity()
 export class Servicio {
@@ -24,7 +25,7 @@ export class Servicio {
   @Column()
   urlFoto360: string;
 
-  @ManyToMany(() => Reserva, (reserva) => reserva.servicios)
-    reservas: Reserva[]
+  @OneToMany(() => ReservaServicio, (reservaServicio) => reservaServicio.reserva)
+  reservasServicio: ReservaServicio[]
 
 }

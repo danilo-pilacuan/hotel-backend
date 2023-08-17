@@ -94,15 +94,15 @@ export class HabitacionController {
     return res.status(HttpStatus.OK).json({ resultado: habitaciones });
   }
 
-  @Get("/byhabitaciones")
+  @Get("byhabitaciones")
   async getHabitaciones1(@Res() res) {
-    const habitaciones = await this.habitacionService.findHab();
+    const habitaciones = await this.habitacionService.findHabDisponibles();
     return res.status(HttpStatus.OK).json({ resultado: habitaciones });
   }
 
   @Get("byservicios")
   async getHabitaciones2(@Res() res) {
-    const habitaciones = await this.habitacionService.findServ();
+    const habitaciones = await this.habitacionService.findServDisponibles();
     return res.status(HttpStatus.OK).json({ resultado: habitaciones });
   }
 

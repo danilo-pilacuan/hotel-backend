@@ -27,6 +27,9 @@ export class Factura {
   @Column()
   estado: string;
 
+  @Column({type: "decimal", precision: 10, scale: 2, default: 0})
+  total: number;
+
   @ManyToOne(() => Reserva, (reserva) => reserva.facturas)
   reserva: Reserva
 

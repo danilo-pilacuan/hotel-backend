@@ -16,6 +16,9 @@ export class Cliente {
 
   @Column()
   direccion: string;
+  
+  @Column()
+  correo: string;
 
   @Column()
   telefono: string;

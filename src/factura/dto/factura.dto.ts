@@ -16,6 +16,8 @@ export class CreateFacturaDto {
     @ApiProperty()
     estado: string;
     @ApiProperty()
+    total: number;
+    @ApiProperty()
     reservaId: number;
   }
   
@@ -37,7 +39,8 @@ export class CreateFacturaDto {
     @ApiProperty()
     estado: string;
     @ApiProperty()
-    
+    total: number;
+    @ApiProperty()
     reservaId: number;
   }
   

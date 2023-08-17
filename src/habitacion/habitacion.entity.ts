@@ -23,6 +23,9 @@ export class Habitacion {
   @Column()
   estado: number;
 
+  @Column()
+  tipo: number;
+
   @ManyToMany(() => Caracteristica, (caracteristica) => caracteristica.habitaciones)
     @JoinTable({
       name: "habitacion_caracteristicas",

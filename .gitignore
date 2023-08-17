@@ -4,6 +4,7 @@
 /images/platos/*
 /images/reservas/*
 /images/servicios/*
+/images/habitaciones/*
 # Logs
 logs
 *.log

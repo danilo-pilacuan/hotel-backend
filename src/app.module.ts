@@ -15,6 +15,7 @@ import { ReservaPlatoModule } from './reserva-plato/reserva-plato.module';
 import { join } from 'path';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { DataSource } from 'typeorm';
+import { ReservaServicioModule } from './reserva-servicio/reserva-servicio.module';
 
 
 @Module({
@@ -31,8 +32,8 @@ import { DataSource } from 'typeorm';
     password: '',
     database: 'dbhotel',
     autoLoadEntities: true,
-    synchronize: true,
-  }),UsuarioModule, ClienteModule, HabitacionModule, ServicioModule, CaracteristicaModule, ReservaModule, FacturaModule, TarifaModule, PlatoModule, ReservaPlatoModule],
+    synchronize: false,
+  }),UsuarioModule, ClienteModule, HabitacionModule, ServicioModule, CaracteristicaModule, ReservaModule, FacturaModule, TarifaModule, PlatoModule, ReservaPlatoModule,ReservaServicioModule],
   controllers: [AppController],
   providers: [AppService],
 })

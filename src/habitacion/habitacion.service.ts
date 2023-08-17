@@ -16,6 +16,7 @@ export class HabitacionService {
     habitacionNueva.numero=createHabitacionDTO.numero
     habitacionNueva.piso=createHabitacionDTO.piso
     habitacionNueva.estado=createHabitacionDTO.estado;
+    habitacionNueva.tipo=createHabitacionDTO.tipo;
     habitacionNueva.urlFotoNormal=urlFotoNormal;
     habitacionNueva.urlFoto360=urlFoto360;
     habitacionNueva.tarifa=<any>{id: createHabitacionDTO.tarifaId};
@@ -35,6 +36,7 @@ export class HabitacionService {
     habitacionActualizada.numero=updateHabitacion.numero
     habitacionActualizada.piso=updateHabitacion.piso
     habitacionActualizada.estado=updateHabitacion.estado;
+    habitacionActualizada.tipo=updateHabitacion.tipo;
     if(urlFoto360!='')
     {
       habitacionActualizada.urlFoto360=urlFoto360;
@@ -55,14 +57,46 @@ export class HabitacionService {
     return await this.habitacionRepository.save(updateHabitacionDTO);
   }
 
-  findAll(): Promise<Habitacion[]> {
-    return this.habitacionRepository.find({relations:{
+  async findAll(): Promise<Habitacion[]> {
+    return await this.habitacionRepository.find({relations:{
       tarifa:true
     }});
   }
 
-  findHab(): Promise<Habitacion[]> {
-    return this.habitacionRepository.find({
+  async findDisponibles(): Promise<Habitacion[]> {
+    return await this.habitacionRepository.find({
+      where:{
+        estado:1
+      },
+      relations:{
+      tarifa:true
+    }});
+  }
+
+  async findHabDisponibles(): Promise<Habitacion[]> {
+    return await this.habitacionRepository.find({
+      where:{
+        estado:1,
+        tipo:1
+      },
+      relations:{
+      tarifa:true
+    }});
+  }
+
+  async findServDisponibles(): Promise<Habitacion[]> {
+    return await this.habitacionRepository.find({
+      where:{
+        estado:1,
+        tipo:2
+      },
+      relations:{
+      tarifa:true
+    }});
+  }
+
+  async findHab(): Promise<Habitacion[]> {
+    return await this.habitacionRepository.find({
       where:{
         tarifa:{
           id:LessThan(12)

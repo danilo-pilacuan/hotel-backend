@@ -10,6 +10,8 @@ export class CreateHabitacionDTO {
   @ApiProperty()
   estado: number;
 
+  @ApiProperty()
+  tipo: number;
   
   @ApiProperty()
   tarifaId: number;
@@ -27,6 +29,9 @@ export class UpdateHabitacionDTO {
   
   @ApiProperty()
   estado: number;
+
+  @ApiProperty()
+  tipo: number;
 
   @ApiProperty()
   tarifaId: number;
