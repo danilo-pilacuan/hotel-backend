@@ -10,7 +10,7 @@ import {
   Param 
 } from '@nestjs/common';
 import { UsuarioService } from './usuario.service';
-import { CreateUsuarioDTO, LoginUsuarioDTO, UpdateUsuarioDTO } from './dto/usuario.dto';
+import { CreateUsuarioClienteDTO, CreateUsuarioDTO, LoginUsuarioDTO, UpdateUsuarioDTO } from './dto/usuario.dto';
 import { ApiTags } from '@nestjs/swagger';
 
 @ApiTags('usuarios')
@@ -22,6 +22,12 @@ export class UsuarioController {
   async createUsuario(@Res() res, @Body() createUsuarioDTO: CreateUsuarioDTO) {
     const createdUsuario = await this.usuarioService.createUsuario(createUsuarioDTO);
     return res.status(HttpStatus.OK).json({ createdUsuario });
+  }
+  
+  @Post("/createUsuarioCliente")
+  async createUsuarioCliente(@Res() res, @Body() createUsuarioClienteDTO: CreateUsuarioClienteDTO) {
+    const createdUsuarioCliente = await this.usuarioService.createUsuarioCliente(createUsuarioClienteDTO);
+    return res.status(HttpStatus.OK).json({ createdUsuarioCliente });
   }
 
   @Post('/login')

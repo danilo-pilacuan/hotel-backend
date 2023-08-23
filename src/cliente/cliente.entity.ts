@@ -24,7 +24,8 @@ export class Cliente {
   telefono: string;
 
   @OneToOne(() => Usuario)
-    @JoinColumn()
+  //@JoinColumn({ name: 'usuarioId' }) // Nombre de la columna en la tabla Cliente que hace referencia al usuario
+  @JoinColumn()
     usuario: Usuario
 
   @OneToMany(() => Reserva, (reserva) => reserva.cliente)

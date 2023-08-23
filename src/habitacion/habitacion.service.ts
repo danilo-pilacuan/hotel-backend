@@ -73,6 +73,26 @@ export class HabitacionService {
     }});
   }
 
+  async findLibres(): Promise<Habitacion[]> {
+    return await this.habitacionRepository.find({
+      where:{
+        estado:1
+      },
+      relations:{
+      tarifa:true
+    }});
+  }
+
+  async findOcupadas(): Promise<Habitacion[]> {
+    return await this.habitacionRepository.find({
+      where:{
+        estado:2
+      },
+      relations:{
+      tarifa:true
+    }});
+  }
+
   async findHabDisponibles(): Promise<Habitacion[]> {
     return await this.habitacionRepository.find({
       where:{
@@ -85,7 +105,7 @@ export class HabitacionService {
   }
 
   async findServDisponibles(): Promise<Habitacion[]> {
-    return await this.habitacionRepository.find({
+    const servicios= await this.habitacionRepository.find({
       where:{
         estado:1,
         tipo:2
@@ -93,6 +113,9 @@ export class HabitacionService {
       relations:{
       tarifa:true
     }});
+    console.log("servicios")
+    console.log(servicios)
+    return servicios;
   }
 
   async findHab(): Promise<Habitacion[]> {

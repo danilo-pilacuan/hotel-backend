@@ -1,5 +1,5 @@
 import { Cliente } from 'src/cliente/cliente.entity';
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
 
 @Entity()
 export class Usuario {
@@ -22,6 +22,7 @@ export class Usuario {
   tipo: number;
 
   @OneToOne(() => Cliente)
+  @JoinColumn() // Nombre de la columna en la tabla Cliente que hace referencia al usuario
     cliente: Cliente
 
   // @OneToMany(() => Reserva, (reserva) => reserva.usuario)

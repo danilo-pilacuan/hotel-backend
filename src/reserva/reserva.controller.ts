@@ -72,6 +72,18 @@ export class ReservaController {
     return res.status(HttpStatus.OK).json({ resultado: reservas });
   }
 
+  @Get("/getByActivas")
+  async getReservasActivas(@Res() res) {
+    const reservas = await this.reservaService.findActivas();
+    return res.status(HttpStatus.OK).json({ resultado: reservas });
+  }
+
+  @Get("/getByInactivas")
+  async getReservasInactivas(@Res() res) {
+    const reservas = await this.reservaService.findInactivas();
+    return res.status(HttpStatus.OK).json({ resultado: reservas });
+  }
+
   @Get(':id')
   async getReservaById(@Res() res, @Param('id') reservaId: number) {
     const reserva = await this.reservaService.findOne(reservaId);

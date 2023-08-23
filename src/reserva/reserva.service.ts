@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, DeleteResult } from 'typeorm';
+import { Repository, DeleteResult, In } from 'typeorm';
 import { Reserva } from './reserva.entity';
 import { CreateReservaDTO, UpdateReservaDTO } from './dto/reserva.dto';
 import { EmailService } from './email.service';
@@ -209,8 +209,38 @@ export class ReservaService {
     return null;
   }
 
-  findAll(): Promise<Reserva[]> {
-    return this.reservaRepository.find({
+  async findAll(): Promise<Reserva[]> {
+    return await this.reservaRepository.find({
+      relations:{
+        cliente:true,
+        habitacion:true,
+        reservasPlato:{
+          plato:true
+        }
+      }
+    });
+  }
+
+  async findActivas(): Promise<Reserva[]> {
+    return await this.reservaRepository.find({
+      where:{
+        estado: In([1,2])
+      },
+      relations:{
+        cliente:true,
+        habitacion:true,
+        reservasPlato:{
+          plato:true
+        }
+      }
+    });
+  }
+
+  async findInactivas(): Promise<Reserva[]> {
+    return await this.reservaRepository.find({
+      where:{
+        estado: In([3,4])
+      },
       relations:{
         cliente:true,
         habitacion:true,

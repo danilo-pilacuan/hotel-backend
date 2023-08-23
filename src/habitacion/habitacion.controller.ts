@@ -100,6 +100,19 @@ export class HabitacionController {
     return res.status(HttpStatus.OK).json({ resultado: habitaciones });
   }
 
+  @Get("ocupadas")
+  async getOcupadas(@Res() res) {
+    const habitaciones = await this.habitacionService.findLibres();
+    return res.status(HttpStatus.OK).json({ resultado: habitaciones });
+  }
+
+  @Get("libres")
+  async getLibres(@Res() res) {
+    const habitaciones = await this.habitacionService.findOcupadas();
+    return res.status(HttpStatus.OK).json({ resultado: habitaciones });
+  }
+
+
   @Get("byservicios")
   async getHabitaciones2(@Res() res) {
     const habitaciones = await this.habitacionService.findServDisponibles();

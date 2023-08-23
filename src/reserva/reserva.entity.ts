@@ -53,7 +53,7 @@ export class Reserva {
   habitacion: Habitacion
   
 
-  @OneToMany(() => ReservaPlato, (reservaPlato) => reservaPlato.reserva)
+  @OneToMany(() => ReservaPlato, (reservaPlato) => reservaPlato.reserva, { onDelete: "CASCADE" })
   reservasPlato: ReservaPlato[]
 
   @OneToMany(() => Factura, (factura) => factura.reserva)
@@ -62,7 +62,7 @@ export class Reserva {
   @ManyToOne(() => Cliente, (cliente) => cliente.reservas)
   cliente: Cliente
 
-  @OneToMany(() => ReservaServicio, (reservaServicio) => reservaServicio.reserva)
+  @OneToMany(() => ReservaServicio, (reservaServicio) => reservaServicio.reserva, { onDelete: "CASCADE" })
   reservasServicio: ReservaServicio[]
 
 }
